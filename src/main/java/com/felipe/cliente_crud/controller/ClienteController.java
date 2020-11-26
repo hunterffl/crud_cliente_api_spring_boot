@@ -33,7 +33,7 @@ import com.felipe.cliente_crud.service.ClienteService;
  * @author Felipe Lemos
  *
  */
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "https://clientecrudapi.herokuapp.com/")
 @RestController
 @RequestMapping("/api")
 public class ClienteController {
