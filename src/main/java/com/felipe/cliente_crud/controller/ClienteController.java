@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,7 +34,6 @@ import com.felipe.cliente_crud.service.ClienteService;
  */
 @CrossOrigin(origins = "https://clientecrudapi.herokuapp.com/")
 @RestController
-@RequestMapping("/api")
 public class ClienteController {
 	
 	@Autowired
@@ -43,7 +41,7 @@ public class ClienteController {
 	
 	@GetMapping
 	public String getHello() {
-		return "Hello World";
+		return "Bem-vindo à API";
 	}
 	
 	/*@GetMapping("/clientes")
@@ -66,7 +64,7 @@ public class ClienteController {
 	    }
 	}*/
 	
-	@GetMapping("/clientes")
+	@GetMapping("api/clientes")
 	public ResponseEntity<Page<ClienteRespostaDto>> findByNomePaginado(
             @RequestParam("nome") String nome,
             @RequestParam(value = "page", required = false, defaultValue = "0") int page,
@@ -91,7 +89,7 @@ public class ClienteController {
 		    }
     }
 	
-	@PostMapping(path = "cliente/novo", consumes=MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(path = "api/cliente/novo", consumes=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> cadastrar(@Valid @RequestBody ClienteDto clienteDto, BindingResult result){
     	
     	if(result.hasErrors()){
