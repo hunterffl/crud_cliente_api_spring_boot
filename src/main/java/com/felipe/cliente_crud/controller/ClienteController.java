@@ -15,7 +15,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,7 +31,7 @@ import com.felipe.cliente_crud.service.ClienteService;
  * @author Felipe Lemos
  *
  */
-@CrossOrigin(origins = "https://clientecrudapi.herokuapp.com/")
+/*@CrossOrigin(origins = "https://localhost:8080/") //localhost:8080 // clientecrudapi.herokuapp.com*/
 @RestController
 public class ClienteController {
 	
