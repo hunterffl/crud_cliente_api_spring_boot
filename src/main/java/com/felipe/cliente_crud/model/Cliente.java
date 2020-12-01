@@ -7,8 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 
 import com.felipe.cliente_crud.util.CalendarUtils;
+import com.felipe.cliente_crud.util.StringUtils;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,8 +29,8 @@ import lombok.NoArgsConstructor;
 public class Cliente {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private int id;
 	
 	private String nome;
 	private String cpf;
@@ -38,5 +41,11 @@ public class Cliente {
 	public int getIdade(){
 		return CalendarUtils.calculaIdade(dataNascimento);
 	}
+	
+	@PrePersist
+    @PreUpdate
+    public void removerFormatacao() {
+		cpf = StringUtils.retornarApenasNumeros(cpf);
+    }
 
 }

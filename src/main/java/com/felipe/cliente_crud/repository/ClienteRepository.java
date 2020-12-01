@@ -22,13 +22,17 @@ public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 	@Query("from Cliente WHERE nome LIKE CONCAT('%',:nome,'%')")
 	List<Cliente> findByNome(@Param("nome") String nome);
 	
-	@Query("from Cliente WHERE cpf LIKE CONCAT('%',:cpf,'%')")
+	@Query("from Cliente WHERE cpf = :cpf")
 	Optional<Cliente> findByCpf(String cpf);
 	
-	@Query("FROM Cliente c WHERE LOWER(c.nome) like %:nome%")
+	@Query("from Cliente c WHERE LOWER(c.nome) like %:nome%")
     Page<Cliente> findByNomePaginado(@Param("nome") String nome, Pageable pageable);
 	
-	@Query("FROM Cliente c WHERE LOWER(c.nome) like %:nome%")
+	@Query("from Cliente c")
 	Page<Cliente> findAllPaginado(Pageable pageable);
+
+	@Query("from Cliente where id = ?1")
+	Optional<Cliente> findById(int id);
+
 }
 
